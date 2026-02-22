@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  labels:
+    app: voting-app
+spec:
+  type: ClusterIP
+  selector:
+    app: voting-app
+  ports:
+     - name: voting-app-port
+       port: 80 
+       targetPort: 8080

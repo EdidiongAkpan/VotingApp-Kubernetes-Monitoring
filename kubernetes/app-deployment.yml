@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voting-app
+  labels:
+    app: voting-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: voting-app
+  template:
+    metadata:
+      labels:
+        app: voting-app
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        runAsNonRoot: true
+
+      initContainers:
+        - name: wait-for-database
+          image: busybox:1.37
+          command:
+            - sh
+            - -c
+            - until nc -z db-service 3306; do echo waiting for database to connect; sleep 10s; done
+
+      containers:
+        - name: voting-app
+          image: edidiongakpan18/voting-app:v1
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: "400m"
+              memory: "400Mi"
+            limits:
+              cpu: "500m"
+              memory: "500Mi"
+              #startupProbe:
+              #tcpSocket:
+              #port: 8080
+              #periodSeconds: 10
+              #timeoutSeconds: 5
+              #failureThreshold: 3
+
+          envFrom:
+            - secretRef:
+                name: app-secret      
+

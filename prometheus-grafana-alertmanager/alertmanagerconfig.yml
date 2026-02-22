@@ -1,0 +1,27 @@
+#kubectl create secret generic alertmanager-slack-webhook \
+ #--from-literal=webhook-url='https://hooks.slack.com/services/XXX' \
+ #-n default (create this k8s secret generic for slack webhook first of all
+#create AlertmanagerConfig.yml file for the alertmanagerconfig file
+#debuggging alertmanagerconfig
+#kubectl get alertmanagerconfig -n monitoring
+#kubectl describe alertmanager main -n monitoring
+#kubectl apply -f Alertmanager-config.yml
+
+
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: slack-routing
+  namespace: monitoring
+  labels:
+    release: monitoring   # must match Helm release label name #check using kubectl get alertmanagers -n monitoring -o yaml
+spec:
+  route:
+    receiver: slack
+  receivers:
+    - name: slack
+      slackConfigs:
+        - apiURL:
+            name: alertmanager-slack-webhook #secret generic name for slack
+            key: webhook-url
+          channel: "#all-kubernetes-alerts"

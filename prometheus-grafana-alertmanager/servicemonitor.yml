@@ -1,0 +1,22 @@
+#define the target here using the app clusterip service  matchlabels
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: voting-app-monitor
+  namespace: monitoring
+  labels:
+    release: monitoring   #kubectl get prometheus -n monitoring -o yaml #look for servicemonitorselector release name and use i=the release name here
+spec:
+  selector:
+    matchLabels:
+      app: voting-app 
+  namespaceSelector:
+    matchNames:
+      - default
+  endpoints:
+    - port: voting-app-port
+      path: /actuator/prometheus
+      interval: 15s
+
+      #kubectl apply -f servicemonitor.yml
+      #kubectl get servicemonitor

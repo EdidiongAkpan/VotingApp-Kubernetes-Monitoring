@@ -1,0 +1,46 @@
+version: "3"
+services: 
+  votingapp:
+    image: edidiongakpan18/voting-app:v1
+    ports:
+      - "8080:8080"
+    environment:
+       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+       SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+    depends_on:
+      - mysql
+    networks:
+      - appnet
+    volumes:
+      - container_volume:/app/logs/volume
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "8081:3306"
+    networks:
+      - appnet
+    volumes:
+      - mysql_data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin:5.2.1
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: ${SPRING_DATASOURCE_USERNAME}
+      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "8082:80"
+    networks:
+      - appnet
+    depends_on:
+      - mysql
+networks:
+  appnet:
+volumes:
+  container_volume:
+  mysql_data:

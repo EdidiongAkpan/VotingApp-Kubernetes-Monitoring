@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-app
+  labels:
+    app: db-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-app
+  template:
+    metadata:
+      labels:
+        app: db-app
+    spec:
+      containers:
+      - name: mysql-db
+        image: mysql:8.0
+        ports:
+        - containerPort: 3306
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "250Mi"
+          limits:
+            cpu: "500m"
+            memory: "500Mi"
+        readinessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 6
+        volumeMounts:
+        - name: mysql-ebs-volume
+          mountPath: /var/lib/mysql
+        envFrom:
+        - secretRef:
+            name: app-secret  
+      volumes:
+      - name: mysql-ebs-volume
+        persistentVolumeClaim:
+          claimName: mysql-pvc  
+

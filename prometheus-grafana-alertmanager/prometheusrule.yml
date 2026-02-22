@@ -1,0 +1,40 @@
+#define the Alert rules here. Alert rules can be defined as much as possible using the expr(promQL expressiosn)
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: alert-rules
+  namespace: monitoring
+  labels:
+    release: monitoring #kubectl describe prometheus monitoring-kube-prometheus-prometheus -n monitoring #check for ruleselector label name and use it here
+spec:
+  groups:
+    - name: voting-app-alerts
+      rules:
+        - alert: HighCPUUsage
+          expr: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "CPU usage is above 80% on {{ $labels.instance }}"
+            description: "Node {{ $labels.instance }} is using more than 80% CPU for the last 5 minutes."
+        - alert: PodCrashLooping
+          expr:  increase(kube_pod_container_status_restarts_total[5m]) > 3
+          for: 2m
+          labels:
+            severity: critical
+          annotations: 
+            summary: "Pod {{ $labels.pod }} is crashing frequently"
+            description: "Container {{ $labels.container }} in pod {{ $labels.pod }} has crashed more than 3 times in the last 2 minutes."
+        - alert: HighAppErrorRate
+          expr: sum(rate(http_server_requests_seconds_count{namespace="default", status=~"5.."}[5m])) > 5
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "High 5xx error rate for voting app"
+            description: "Your app has more than 5 5xx HTTP errors per second over the last 5 minutes." 
+
+            #kubectl apply -f PrometheusRule.yml
+            #kubectl get prometheusrules -n monitoring #to see if succesfully created
+

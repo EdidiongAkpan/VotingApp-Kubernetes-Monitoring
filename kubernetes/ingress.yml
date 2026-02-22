@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: votingapp-ingress
+  namespace: default
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: ""  # or your domain
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 80
+
+#kubectl get svc -n traefik to get external ip of traefik load baalncer
+#nslookup <traefik external ip>
+#copy the given ip address to vim /etc/hosts file and map it with ip address and domain name(votingapp.xyz)>
