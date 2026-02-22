@@ -351,6 +351,8 @@ kubectl apply -f servicemonitor.yml
 
 Open Prometheus UI → Status → Targets and confirm application metrics appear.
 
+![prometheus targets](https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/prometheus-alert-endpoints.png?raw=true)
+
 ---
 
 ## Step 7 — Add Prometheus as Grafana Datasource
@@ -401,6 +403,8 @@ up
 increase(kube_pod_container_status_restarts_total[10m])
 ```
 
+![prometheus querying](https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/Screenshot%202026-02-21%20180257.png?raw=true)
+
 ---
 
 ## Step 10 — Trigger High CPU Load
@@ -411,7 +415,7 @@ kubectl run cpu-stress \
   --restart=Never \
   -- /bin/sh -c "for i in 1 2 3 4; do while true; do :; done & done; wait"
 ```
-
+ 
 ---
 
 ## Step 11 — Verify Alerts
@@ -423,11 +427,15 @@ Check:
 * Alertmanager UI → Alert firing
 * Slack Channel → Notification received
 
+![Alerts firing](https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/alert%20firing%20alertmanager.png?raw=true)
+
 ---
 
 ## Step 12 — Visualize Metrics in Grafana
 
 Open Grafana dashboards to view:
+
+![Grafana dashboard](https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/grafana%20dashboard%20for%20voting-app%20app.png?raw=true)
 
 * Node utilization
 * Pod health
