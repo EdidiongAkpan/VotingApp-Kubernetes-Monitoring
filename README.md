@@ -351,7 +351,7 @@ kubectl apply -f servicemonitor.yml
 
 Open Prometheus UI → Status → Targets and confirm application metrics appear.
 
-![prometheus targets](images/https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/prometheus-alert-endpoints.png?raw=true)
+![prometheus targets](images/prometheus-alert-endpoints.png)
 
 ---
 
