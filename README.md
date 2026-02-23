@@ -403,7 +403,7 @@ up
 increase(kube_pod_container_status_restarts_total[10m])
 ```
 
-![prometheus querying](images/https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/Screenshot%202026-02-21%20180257.png?raw=true)
+![prometheus querying](Screenshot2026-02-21180257.png)
 
 ---
 
