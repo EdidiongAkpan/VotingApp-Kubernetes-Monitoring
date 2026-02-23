@@ -351,7 +351,7 @@ kubectl apply -f servicemonitor.yml
 
 Open Prometheus UI → Status → Targets and confirm application metrics appear.
 
-![prometheus targets](https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/prometheus-alert-endpoints.png?raw=true)
+![prometheus targets](images/https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/prometheus-alert-endpoints.png?raw=true)
 
 ---
 
@@ -403,7 +403,7 @@ up
 increase(kube_pod_container_status_restarts_total[10m])
 ```
 
-![prometheus querying](https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/Screenshot%202026-02-21%20180257.png?raw=true)
+![prometheus querying](images/https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/Screenshot%202026-02-21%20180257.png?raw=true)
 
 ---
 
@@ -427,7 +427,7 @@ Check:
 * Alertmanager UI → Alert firing
 * Slack Channel → Notification received
 
-![Alerts firing](https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/alert%20firing%20alertmanager.png?raw=true)
+![Alerts firing](images/https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/alert%20firing%20alertmanager.png?raw=true)
 
 ---
 
@@ -435,7 +435,7 @@ Check:
 
 Open Grafana dashboards to view:
 
-![Grafana dashboard](https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/grafana%20dashboard%20for%20voting-app%20app.png?raw=true)
+![Grafana dashboard](images/https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/grafana%20dashboard%20for%20voting-app%20app.png?raw=true)
 
 * Node utilization
 * Pod health
