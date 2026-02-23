@@ -195,11 +195,13 @@ Create Kubernetes manifests for:
 * app-backend Deployment & Service
 * MySQL Deployment & Service
 * phpMyAdmin Deployment & Service
+* Reference to the kubernetes folder for full manifest files
 
-Create Secret (Base64 encode password):
+Create Secret using (Base64 encode password) for secret datas as database:
 
 ```bash
-echo -n "mypassword" | base64
+echo -n "<secret_name>" | base64
+create secret.yml file, put all the secrets
 ```
 
 ---
@@ -222,7 +224,7 @@ kubectl apply -f db-persistentvolumeclaim.yml
 
 ### Create Ingress Resource
 
-Use dummy domain:
+Using a dummy domain:
 
 ```
 votingapp.xyz
@@ -407,7 +409,7 @@ increase(kube_pod_container_status_restarts_total[10m])
 
 ---
 
-## Step 10 — Trigger High CPU Load
+## Step 10 — Trigger High CPU Load(Testing)
 
 ```bash
 kubectl run cpu-stress \
