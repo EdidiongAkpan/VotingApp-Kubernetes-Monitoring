@@ -142,7 +142,7 @@ kubectl get nodes
 kubectl get pods -n kube-system
 ```
 
-![nodes and pods running](https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/nodes%20and%20pods%20running.PNG?raw=true)
+![nodes and pods running](images/https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/nodes%20and%20pods%20running.PNG?raw=true)
 
 ---
 
