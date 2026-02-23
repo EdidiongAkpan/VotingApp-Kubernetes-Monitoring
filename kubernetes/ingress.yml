@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: ""  # or your domain
+    - host: votingapp.xyz  # our dummy domain 
       http:
         paths:
           - path: /
