@@ -403,7 +403,7 @@ up
 increase(kube_pod_container_status_restarts_total[10m])
 ```
 
-![prometheus querying](Screenshot2026-02-21180257.png)
+![prometheus querying](images/Screenshot2026-02-21180257.png)
 
 ---
 
@@ -427,7 +427,7 @@ Check:
 * Alertmanager UI → Alert firing
 * Slack Channel → Notification received
 
-![Alerts firing](images/https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/alert%20firing%20alertmanager.png?raw=true)
+![Alerts firing](images/alertfiringalertmanager.png)
 
 ---
 
@@ -435,7 +435,7 @@ Check:
 
 Open Grafana dashboards to view:
 
-![Grafana dashboard](images/https://github.com/EdidiongAkpan/VotingApp-Kubernetes-Monitoring/blob/main/grafana%20dashboard%20for%20voting-app%20app.png?raw=true)
+![Grafana dashboard](images/grafanadashboardforvoting-appapp.png)
 
 * Node utilization
 * Pod health
